@@ -11,16 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
-public class LoginController
-{
-	@Autowired
-	private LoginRepository loginRepository;
-	private Gson gson;
+public class LoginController {
 
-	@PostMapping(path ="/register")
-	public User register(@RequestBody User user)
-	{
-		loginRepository.save(user);
-		return user;
-	}
+    @Autowired
+    private LoginRepository loginRepository;
+    private Gson gson;
+
+    @PostMapping(path = "/register")
+    public User register(@RequestBody User user) {
+        loginRepository.save(user);
+        return user;
+    }
+
+    @PostMapping
+    public boolean login(@RequestBody User user) {
+        if(loginRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()) != null) {
+			return true;
+        }
+        return false;
+    }
 }
