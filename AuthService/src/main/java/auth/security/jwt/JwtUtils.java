@@ -1,8 +1,8 @@
-package security.jwt;
+package auth.security.jwt;
 
 import java.util.Date;
 
-import model.User;
+import auth.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package security.jwt;
+package auth.security.jwt;
 
 import java.io.IOException;
 
