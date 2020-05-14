@@ -13,16 +13,21 @@ public class GatewayApplication {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
-    private static String VOICE_URI = "http://test-core-web-app:8081";
+    private static String AUTH_URI = "http://localhost:8081";
+    private static String LOBBY_URI = "http://localhost:8081";
 
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder)
     {
         return builder.routes()
-                      .route(p -> p
-                              .path("/testing/**")
+                      .route(a -> a
+                              .path("/api/**")
                               .filters(f -> f.addRequestHeader("test", "Hello World"))
-                              .uri(VOICE_URI))
+                              .uri(AUTH_URI))
+                      .route(l -> l
+                              .path("/api/**")
+                              .filters(f -> f.addRequestHeader("test", "Hello World"))
+                              .uri(LOBBY_URI))
                       .build();
     }
 }

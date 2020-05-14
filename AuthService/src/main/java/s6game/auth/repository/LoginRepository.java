@@ -1,6 +1,5 @@
 package s6game.auth.repository;
 
-
 import s6game.auth.model.User;
 import org.springframework.data.repository.CrudRepository;
 
