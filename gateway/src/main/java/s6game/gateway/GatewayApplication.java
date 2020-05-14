@@ -1,4 +1,4 @@
-package main.java.s6game.gateway;
+package s6game.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

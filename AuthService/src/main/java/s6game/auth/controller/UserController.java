@@ -1,4 +1,4 @@
-package main.java.auth.controller;
+package s6game.auth.controller;
 
 import s6game.auth.model.User;
 import s6game.auth.repository.UserRepository;

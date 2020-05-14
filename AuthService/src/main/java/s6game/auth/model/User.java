@@ -13,7 +13,7 @@ public class User {
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String username;
     private String password;
     private int stamina;
@@ -24,7 +24,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     //getters
-    public int getId() { return id; }
+    public Long getId() { return id; }
 
     public String getUsername() {
         return username;

@@ -1,8 +1,5 @@
 package s6game.auth.security;
 
-import s6game.auth.security.jwt.AuthEntryPointJwt;
-import s6game.auth.security.jwt.AuthTokenFilter;
-import s6game.auth.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import s6game.auth.security.jwt.AuthEntryPointJwt;
+import s6game.auth.security.jwt.AuthTokenFilter;
+import s6game.auth.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/api/s6game.auth/**").permitAll()
+            .authorizeRequests().antMatchers("/api/auth/**").permitAll()
             .antMatchers("/api/test/**").permitAll()
             .anyRequest().authenticated();
 

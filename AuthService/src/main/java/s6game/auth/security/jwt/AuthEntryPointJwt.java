@@ -1,4 +1,4 @@
-package auth.security.jwt;
+package s6game.auth.security.jwt;
 
 import java.io.IOException;
 
