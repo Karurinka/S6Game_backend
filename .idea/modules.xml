@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AuthService/AuthService.iml" filepath="$PROJECT_DIR$/AuthService/AuthService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LobbyService/LobbyService.iml" filepath="$PROJECT_DIR$/LobbyService/LobbyService.iml" />
       <module fileurl="file://$PROJECT_DIR$/S6Game_backend.iml" filepath="$PROJECT_DIR$/S6Game_backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth/auth.iml" filepath="$PROJECT_DIR$/auth/auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lobby/lobby.iml" filepath="$PROJECT_DIR$/lobby/lobby.iml" />
     </modules>
   </component>
 </project>
