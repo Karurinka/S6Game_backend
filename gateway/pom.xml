@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from main.java.s6game.auth.repository -->
+		<relativePath/> <!-- lookup parent from main.java.auth.repository -->
 	</parent>
 	<groupId>S6Game</groupId>
 	<artifactId>auth</artifactId>

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AuthService/AuthService.iml" filepath="$PROJECT_DIR$/AuthService/AuthService.iml" />
       <module fileurl="file://$PROJECT_DIR$/LobbyService/LobbyService.iml" filepath="$PROJECT_DIR$/LobbyService/LobbyService.iml" />
       <module fileurl="file://$PROJECT_DIR$/S6Game_backend.iml" filepath="$PROJECT_DIR$/S6Game_backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
     </modules>
   </component>
 </project>
