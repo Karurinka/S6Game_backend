@@ -63,4 +63,21 @@ public class UserController {
     public String generateToken(Principal principal){
         return applicationUserRepository.findByMainUserId(applicationUserRepository.findByUsername(principal.getName()).getId()).getToken();
     }
+	
+    //@PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/OK")
+    public String OK(Principal principal){
+        return principal.getName();
+    }
+
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/OKSecured")
+    public String OKSec(Principal principal){
+        return principal.getName();
+    }
+
+    @GetMapping("/findMe")
+    public String findMe(Principal principal){
+        return ((Role)applicationUserRepository.findByUsername(principal.getName()).getRoles().toArray()[0]).getRoleName();
+    }
 }
