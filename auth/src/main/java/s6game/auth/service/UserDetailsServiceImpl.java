@@ -1,32 +1,41 @@
-package s6game.auth.service;
+package s6game.auth.Service;
 
-import s6game.auth.model.User;
-import s6game.auth.model.UserDetailsImpl;
-import s6game.auth.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import s6game.auth.DataLayer.ApplicationUserRepository;
+import s6game.auth.Models.ApplicationUser;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+    private ApplicationUserRepository applicationUserRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if(user != null) {
-
-        }
-        else {
-            new UsernameNotFoundException("User Not Found with username: " + username);
-        }
-        return UserDetailsImpl.build(user);
+    public UserDetailsServiceImpl(ApplicationUserRepository applicationUserRepository) {
+        this.applicationUserRepository = applicationUserRepository;
     }
 
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+        if (applicationUser == null) {
+            throw new UsernameNotFoundException(username);
+        }
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        applicationUser.getRoles().forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        });
+        return new User(applicationUser.getUsername(), applicationUser.getPassword(),authorities);
+    }
 }
