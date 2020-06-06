@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 public class MyJwtTokenStore extends JwtTokenStore {
-
     @Autowired
     UsersDao usersDao;
 
