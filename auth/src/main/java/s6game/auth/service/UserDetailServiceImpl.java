@@ -11,6 +11,7 @@ import s6game.auth.config.Users;
 import s6game.auth.dao.UsersDao;
 import s6game.auth.entity.AuthoritiesEntity;
 import s6game.auth.entity.UsersEntity;
+
 import java.util.HashSet;
 import java.util.Set;
 

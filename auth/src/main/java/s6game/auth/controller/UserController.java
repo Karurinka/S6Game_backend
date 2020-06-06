@@ -14,6 +14,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.Charset;
 import java.security.Principal;
@@ -53,6 +54,7 @@ public class UserController {
         set2.add(new AuthoritiesEntity(guestUser,Authority.ROLE_USER));
         guestUser.setAuthorities(set2);
         guestUser = applicationUserRepository.save(guestUser);
+
         return "";
     }
 

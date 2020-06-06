@@ -1,4 +1,4 @@
-package s6game.auth.util;
+package io.mitch.authorizationserver.util;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,5 +1,6 @@
 package s6game.auth.entity;
 
+
 public class UserModel {
     private int id;
     private String username;
