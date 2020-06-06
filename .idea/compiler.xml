@@ -6,14 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lobby" />
         <module name="S6Game_backend" />
         <module name="gateway" />
+        <module name="lobby" />
         <module name="auth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="auth" target="11" />
+      <module name="auth" target="1.8" />
       <module name="gateway" target="11" />
       <module name="lobby" target="11" />
       <module name="S6Game_backend" target="11" />
