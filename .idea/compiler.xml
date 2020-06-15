@@ -15,8 +15,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth" target="1.8" />
-      <module name="gateway" target="1.8" />
-      <module name="lobby" target="1.8" />
+      <module name="gateway" target="11" />
+      <module name="lobby" target="11" />
       <module name="rabbit" target="1.8" />
       <module name="S6Game_backend" target="11" />
     </bytecodeTargetLevel>
