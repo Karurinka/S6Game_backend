@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rabbit" />
         <module name="S6Game_backend" />
         <module name="gateway" />
         <module name="lobby" />
@@ -14,8 +15,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth" target="1.8" />
-      <module name="gateway" target="11" />
-      <module name="lobby" target="11" />
+      <module name="gateway" target="1.8" />
+      <module name="lobby" target="1.8" />
+      <module name="rabbit" target="1.8" />
       <module name="S6Game_backend" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +27,7 @@
       <module name="auth" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="lobby" options="-parameters" />
+      <module name="rabbit" options="-parameters" />
     </option>
   </component>
 </project>

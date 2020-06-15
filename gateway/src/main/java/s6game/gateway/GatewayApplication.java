@@ -14,14 +14,14 @@ public class GatewayApplication {
     }
 
     private static String AUTH_URI = "http://localhost:8081";
-    private static String LOBBY_URI = "http://localhost:8081";
+    private static String LOBBY_URI = "http://localhost:8082";
 
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder)
     {
         return builder.routes()
                       .route(a -> a
-                              .path("/api/**")
+                              .path("/users/**")
                               .filters(f -> f.addRequestHeader("test", "Hello World"))
                               .uri(AUTH_URI))
                       .route(l -> l
