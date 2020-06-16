@@ -1,50 +1,69 @@
 version: '3.3'
-networks:
-  spring-boot-mysql-network:
-    driver: bridge
 services:
+  authdb:
+    image: mysql:8.0.20
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'gbf'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'myuser'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'myuser'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3307:3306'
+      # Where our data will be persisted
+
   message-broker:
     image: rabbitmq:3.8-management
     hostname: message-broker
     restart: always
-    labels:
-      NAME: message-broker
     ports:
-      - "15672:15672"
       - "5672:5672"
+      - "15672:15672"
+
+  lobbydb:
+    image: mysql:8.0.20
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'lobby'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'myuser'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'myuser'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3308:3306'
+      # Where our data will be persisted
 
   spring-gateway:
+    build: ./gateway
     image: spring-gateway:latest
     hostname: spring-gateway
     restart: always
     ports:
-        - 8083:8083
-
-  lobby-service:
-    image: lobby-service:latest
-    hostname: lobby-service
-    restart: always
-    ports:
-      - 8082:8082
-
-  mysqldb:
-    image: mysql:5.6.26
-    hostname: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=admin
-      - MYSQL_DATABASE=gbf
-    ports:
-      - 3306:3306
+        - "8083:8083"
 
   authentication-service:
+    build: ./auth
     image: authentication-service:latest
     hostname: authentication-service
     restart: always
     ports:
-      - 8081:8081
-    links:
-      - mysqldb:mysqldb
+      - "8081:8081"
     depends_on:
-      - mysqldb
-    networks:
-      - spring-boot-mysql-network
+      - authdb
+
+  lobby-service:
+    build: ./lobby
+    image: lobby-service:latest
+    hostname: lobby-service
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - lobbydb
