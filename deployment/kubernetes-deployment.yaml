@@ -100,7 +100,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: message-broker
-          image: jkingcontainterregistry01.azurecr.io/jking-auth:kube
+          image: jkingcontainterregistry01.azurecr.io/message-broker:kube
           ports:
             - containerPort: 5672
               name: message-broker
