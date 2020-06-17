@@ -31,8 +31,8 @@ pipeline {
 		
 		stage('Docker Build') {
 			steps {
-				sh 'docker build . -t mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER}'
-				sh 'docker build . -t mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER}'
+				sh 'docker build . -t mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} ./auth'
+				sh 'docker build . -t mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER} ./lobby'
 			}
 		}
 		
@@ -40,16 +40,16 @@ pipeline {
 			steps {
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'acr-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
 				sh 'docker login mycontainerregistry1610.azurecr.io -u $USERNAME -p $PASSWORD'
-				sh 'docker push mycontainerregistry1610.azurecr.io/solo-auth:kube${BUILD_NUMBER}'
-				sh 'docker push mycontainerregistry1610.azurecr.io/solo-lobby:kube${BUILD_NUMBER}'
+				sh 'docker push mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER}'
+				sh 'docker push mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER}'
 				}	
 			}
 		}
 		
 		stage('Kubectl magic'){
 			steps {
-				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-auth:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
-				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-lobby:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
+				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
+				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
 			}
 		}
     }
