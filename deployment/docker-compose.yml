@@ -41,7 +41,7 @@ services:
       # Where our data will be persisted
 
   spring-gateway:
-    build: ./gateway
+    build: ../gateway
     image: spring-gateway:latest
     hostname: spring-gateway
     restart: always
@@ -49,7 +49,7 @@ services:
         - "8083:8083"
 
   authentication-service:
-    build: ./auth
+    build: ../auth
     image: authentication-service:latest
     hostname: authentication-service
     restart: always
@@ -59,7 +59,7 @@ services:
       - authdb
 
   lobby-service:
-    build: ./lobby
+    build: ../lobby
     image: lobby-service:latest
     hostname: lobby-service
     restart: always
