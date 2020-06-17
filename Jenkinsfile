@@ -48,10 +48,8 @@ pipeline {
 		
 		stage('Kubectl magic'){
 			steps {
-				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-auth:kube${BUILD_NUMBER}
-				--kubeconfig /home/gebruiker/.kube/config'
-				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-lobby:kube${BUILD_NUMBER}
-				--kubeconfig /home/gebruiker/.kube/config'
+				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-auth:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
+				sh 'kubectl set image deployment/mycontainerregistry1610.azurecr.io/solo-lobby:kube${BUILD_NUMBER} --kubeconfig /home/gebruiker/.kube/config'
 			}
 		}
     }
