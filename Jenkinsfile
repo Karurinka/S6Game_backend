@@ -46,7 +46,7 @@ pipeline {
 			}
 		}
 		
-		stage('Kubectl magic'){
+		stage('Kubectl deployment'){
 			steps {
 				sh 'kubectl set image deployment/auth-service auth-service=mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} --kubeconfig /home/michellebroens/.kube/config'
 				sh 'kubectl set image deployment/lobby-service lobby-service=mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER} --kubeconfig /home/michellebroens/.kube/config'
