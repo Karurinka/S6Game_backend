@@ -21,24 +21,6 @@ pipeline {
 				'''
             }
         }
-		
-		stage('Sonar analysis') {
-			agent any
-			steps{
-				withSonarQubeEnv('SonarQube') {
-					sh 'mvn -f ./auth/pom.xml clean package sonar:sonar'
-					sh 'mvn -f ./lobby/pom.xml clean package sonar:sonar'
-        		}
-    	    }
-    	}
-		
-		stage('Quality gate') {
-			steps {
-				timeout(time: 2, unit: 'MINUTES') {
-					waitForQualityGate abortPipeline: true
-				}
-			}
-		}
 
 		stage('Package') {
 			steps {
