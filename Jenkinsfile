@@ -31,8 +31,8 @@ pipeline {
 		
 		stage('Docker Build') {
 			steps {
-				sh 'docker build . -t mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} ./auth-service'
-				sh 'docker build . -t mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER} ./lobby-service'
+				sh 'docker build -t mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} ./auth-service'
+				sh 'docker build -t mycontainerregistry1610.azurecr.io/lobby-service:kube${BUILD_NUMBER} ./lobby-service'
 			}
 		}
 		
