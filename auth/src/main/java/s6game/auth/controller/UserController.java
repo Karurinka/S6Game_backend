@@ -77,7 +77,7 @@ public class UserController {
         map.add("password",httpServletRequest.getUserPrincipal().getName()+ "guestPassword");
         map.add("grant_type","password");
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(map,header);
-        ResponseEntity<TokenResponse> response = template.postForEntity("http://20.50.250.38:8081/oauth/token",request,TokenResponse.class);
+        ResponseEntity<TokenResponse> response = template.postForEntity("http://localhost:8081/oauth/token",request,TokenResponse.class);
         return response.getBody();
     }
 
@@ -90,7 +90,7 @@ public class UserController {
         map.add("password",usersEntity.getPassword());
         map.add("grant_type","password");
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(map,header);
-        ResponseEntity<TokenResponse> response = template.postForEntity("http://20.50.250.38:8081/oauth/token",request,TokenResponse.class);
+        ResponseEntity<TokenResponse> response = template.postForEntity("http://localhost:8081/oauth/token",request,TokenResponse.class);
         return response.getBody();
     }
 
