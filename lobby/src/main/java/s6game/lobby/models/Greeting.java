@@ -1,4 +1,4 @@
-package s6game.lobby.websocket;
+package s6game.lobby.models;
 
 public class Greeting {
 
