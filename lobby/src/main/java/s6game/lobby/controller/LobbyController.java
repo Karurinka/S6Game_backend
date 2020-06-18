@@ -17,14 +17,13 @@ import s6game.lobby.repository.ILobbyRepository;
 @CrossOrigin
 @RequestMapping("/lobby")
 public class LobbyController {
+	@Autowired
+    private ILobbyRepository lobbyRepository;
 
     @PostMapping
     public Lobby CreateLobby(@RequestBody LobbyReceiver lobbyReceiver){
         return lobbyRepository.save(new Lobby(lobbyReceiver));
     }
-
-    @Autowired
-    private ILobbyRepository lobbyRepository;
 
     @GetMapping("/{lobbyName}")
     public Lobby GetLobby(@PathVariable String lobbyName){

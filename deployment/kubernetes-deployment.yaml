@@ -100,7 +100,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: message-broker
-          image: jkingcontainterregistry01.azurecr.io/message-broker:kube
+          image: rabbitmq:3.8-management
           ports:
             - containerPort: 5672
               name: message-broker
@@ -137,7 +137,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: auth-service
-          image: mycontainerregistry1610.azurecr.io/authentication-service:v1
+          image: mycontainerregistry1610.azurecr.io/auth-service:kube
           imagePullPolicy: "Always"
           resources:
             requests:
@@ -147,7 +147,7 @@ spec:
               cpu: 250m
               memory: 256Mi
           ports:
-            - containerPort: 8082
+            - containerPort: 8081
               name: auth-service
 ---
 apiVersion: v1
@@ -157,7 +157,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 8082
+    - port: 8081
   selector:
     app: auth-service
 ---
@@ -180,7 +180,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
         - name: lobby-service
-          image: mycontainerregistry1610.azurecr.io/lobby-service:v1
+          image: mycontainerregistry1610.azurecr.io/lobby-service:kube
           imagePullPolicy: "Always"
           resources:
             requests:
@@ -190,7 +190,7 @@ spec:
               cpu: 250m
               memory: 256Mi
           ports:
-            - containerPort: 8081
+            - containerPort: 8082
           env:
             - name: auth-service
               value: "auth-service"
@@ -202,84 +202,6 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 8081
+    - port: 8082
   selector:
     app: lobby-service
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: sonar
-spec:
-  replicas: 1
-  template:
-    metadata:
-      name: sonar
-      labels:
-        name: sonar
-    spec:
-      containers:
-        - image: sonarqube:latest
-          args:
-            - -Dsonar.web.context=/sonar
-          name: sonar
-          env:
-            - name: SONARQUBE_JDBC_PASSWORD
-              value: password
-            - name: SONARQUBE_JDBC_URL
-              value: jdbc:postgresql://sonar-postgres:5432/sonar
-          ports:
-            - containerPort: 9000
-              name: sonar
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: sonar
-  name: sonar
-spec:
-  ports:
-    - port: 80
-      targetPort: 9000
-      name: sonarport
-  selector:
-    name: sonar
-  type: LoadBalancer
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: sonar-postgres
-spec:
-  replicas: 1
-  template:
-    metadata:
-      name: sonar-postgres
-      labels:
-        name: sonar-postgres
-    spec:
-      containers:
-        - image: postgres:9.5.3
-          name: sonar-postgres
-          env:
-            - name: POSTGRES_PASSWORD
-              value: password
-            - name: POSTGRES_USER
-              value: sonar
-          ports:
-            - containerPort: 5432
-              name: postgresport
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: sonar-postgres
-  name: sonar-postgres
-spec:
-  ports:
-    - port: 5432
-  selector:
-    name: sonar-postgres
----
