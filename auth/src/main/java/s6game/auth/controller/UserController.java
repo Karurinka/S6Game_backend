@@ -67,7 +67,7 @@ public class UserController {
         map.add("grant_type", "password");
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, header);
         ResponseEntity<TokenResponse> response =
-                template.postForEntity("auth-service:8081/oauth/token", request, TokenResponse.class);
+                template.postForEntity("http://auth-service:8081/oauth/token", request, TokenResponse.class);
         return response.getBody();
     }
 
@@ -80,7 +80,7 @@ public class UserController {
         map.add("grant_type", "refresh_token");
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, header);
         ResponseEntity<TokenResponse> response =
-                template.postForEntity("auth-service:8081/oauth/token", request, TokenResponse.class);
+                template.postForEntity("http://auth-service:8081/oauth/token", request, TokenResponse.class);
         return response.getBody();
     }
 
