@@ -14,7 +14,7 @@ import java.util.Set;
 public class UsersEntity {
 
     private String password;
-    @Id
+    
     @Column(columnDefinition = "VARCHAR(15)")
     private String username;
 
@@ -30,6 +30,8 @@ public class UsersEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
+
+
 
     public String getPassword() {
         return password;
