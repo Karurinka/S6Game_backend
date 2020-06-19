@@ -30,7 +30,9 @@ pipeline {
 		}
 
 		stage('SonarCloud'){
-		    sh 'mvn verify sonar:sonar'
+		    steps{
+		        sh 'mvn verify sonar:sonar'
+		    }
 		}
 		
 		stage('Docker Build') {
