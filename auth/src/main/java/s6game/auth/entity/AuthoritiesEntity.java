@@ -1,9 +1,7 @@
 package s6game.auth.entity;
 
 import s6game.auth.service.Authority;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name ="authorities" )

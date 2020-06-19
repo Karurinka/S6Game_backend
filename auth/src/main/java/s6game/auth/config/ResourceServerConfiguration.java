@@ -10,9 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-
 import java.io.IOException;
-
 import static org.apache.commons.codec.Charsets.UTF_8;
 
 @Configuration
@@ -52,3 +50,4 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     }
 }
+

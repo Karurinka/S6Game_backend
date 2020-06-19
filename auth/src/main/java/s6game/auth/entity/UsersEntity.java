@@ -36,6 +36,14 @@ public class UsersEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -71,6 +79,7 @@ public class UsersEntity {
     public boolean isCredentialsNonExpired() {
         return credentialsNonExpired;
     }
+
 
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;

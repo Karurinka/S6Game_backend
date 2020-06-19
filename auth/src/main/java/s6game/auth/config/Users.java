@@ -14,16 +14,15 @@ public class Users implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
-
-    private Set<GrantedAuthority> authorities;
-
+    private  Set<GrantedAuthority> authorities;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<GrantedAuthority> authorities) {
-        this.authorities = authorities;
+    public void setAuthorities(Set<GrantedAuthority> authorities)
+    {
+        this.authorities=authorities;
     }
 
     @Override
