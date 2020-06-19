@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import s6game.lobby.models.User;
 import s6game.lobby.repository.IUserRepository;
 
-
 @Component
 public class EventReceiver {
 
