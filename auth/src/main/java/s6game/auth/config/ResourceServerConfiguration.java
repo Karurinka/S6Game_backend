@@ -1,6 +1,5 @@
 package s6game.auth.config;
 
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -42,26 +41,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
             .and().authorizeRequests().antMatchers("/oauth/token","/h2-console/**","/users/sign-up","/users/login")
             .permitAll().anyRequest().authenticated();
     }
-
-//    @Bean
-//    public DefaultTokenServices tokenServices(final TokenStore tokenStore) {
-//        DefaultTokenServices tokenServices = new DefaultTokenServices();
-//        tokenServices.setTokenStore(tokenStore);
-//        tokenServices.setAccessTokenValiditySeconds(0);
-//        return tokenServices;
-//    }
-
-//    @Bean
-//    public TokenStore tokenStore() {
-//           return new JwtTokenStore(jwtAccessTokenConverter());
-//    }
-
-//    @Bean
-//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//        converter.setVerifierKey(getPublicKeyAsString());
-//        return converter;
-//    }
 
     private String getPublicKeyAsString() {
         try {

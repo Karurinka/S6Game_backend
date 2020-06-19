@@ -2,6 +2,7 @@ package s6game.auth.config;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,15 +15,15 @@ public class Users implements UserDetails {
     private boolean credentialsNonExpired;
     private boolean enabled;
 
-    private  Set<GrantedAuthority> authorities;
+    private Set<GrantedAuthority> authorities;
+
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<GrantedAuthority> authorities)
-    {
-        this.authorities=authorities;
+    public void setAuthorities(Set<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override

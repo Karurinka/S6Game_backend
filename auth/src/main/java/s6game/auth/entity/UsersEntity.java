@@ -25,6 +25,8 @@ public class UsersEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
 
+
+
     public String getPassword() {
         return password;
     }
@@ -81,4 +83,3 @@ public class UsersEntity {
         this.authorities = authorities;
     }
 }
-
