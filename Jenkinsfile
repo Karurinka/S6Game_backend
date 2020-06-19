@@ -22,16 +22,12 @@ pipeline {
             }
         }
 
-		stage('Package') {
-			steps {
-				sh 'mvn -f ./auth/pom.xml -B -DskipTests package'
-				sh 'mvn -f ./lobby/pom.xml -B -DskipTests package'
-			}
-		}
-
 		stage('SonarCloud'){
 		    steps{
-		        sh 'mvn verify sonar:sonar'
+		        sh 'mvn -f ./auth/pom.xml verify sonar:sonar'
+		        sh 'mvn -f ./lobby/pom.xml verify sonar:sonar'
+		        sh 'mvn -f ./auth/pom.xml clean package sonar:sonar'
+		        sh 'mvn -f ./lobby/pom.xml clean package sonar:sonar'
 		    }
 		}
 		
