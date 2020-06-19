@@ -1,7 +1,6 @@
 package s6game.lobby.receiver;
 
 import s6game.lobby.models.User;
-
 import java.util.List;
 
 public class LobbyReceiver {

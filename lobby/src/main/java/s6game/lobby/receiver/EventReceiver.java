@@ -20,6 +20,7 @@ public class EventReceiver {
     @RabbitListener(queues = "${s6game.rabbit.queue}")
     public void receive(String userJson) {
         Gson gson = new Gson();
+        System.out.println("received the event!");
         log.info("Received event in service document generation: {}", userJson);
         userRepository.save(gson.fromJson(userJson, User.class));
     }

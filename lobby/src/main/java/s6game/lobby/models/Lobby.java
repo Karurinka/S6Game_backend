@@ -3,17 +3,18 @@ package s6game.lobby.models;
 import s6game.lobby.receiver.LobbyReceiver;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Lobby {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToMany(targetEntity = User.class)
-    List<User> users;
+    List<User> users = new ArrayList<>();
 
     private long owner;
 

@@ -21,7 +21,6 @@ public class HelloMessage {
     @JoinColumn(name= "lobby_id")
     private Lobby lobby;
 
-
     public HelloMessage() {}
 
     public HelloMessage(String name) {
