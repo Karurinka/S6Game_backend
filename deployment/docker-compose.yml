@@ -40,14 +40,6 @@ services:
       - '3308:3306'
       # Where our data will be persisted
 
-  spring-gateway:
-    build: ../gateway
-    image: spring-gateway:latest
-    hostname: spring-gateway
-    restart: always
-    ports:
-        - "8083:8083"
-
   authentication-service:
     build: ../auth
     image: authentication-service:latest
