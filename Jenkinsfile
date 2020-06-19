@@ -28,6 +28,10 @@ pipeline {
 				sh 'mvn -f ./lobby/pom.xml -B -DskipTests package'
 			}
 		}
+
+		stage('SonarCloud'){
+		    sh 'mvn verify sonar:sonar'
+		}
 		
 		stage('Docker Build') {
 			steps {
