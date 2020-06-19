@@ -22,7 +22,25 @@ public class SecurityProperties {
         private String keyStorePassword;
         private String keyPairAlias;
         private String keyPairPassword;
+
+        private JwtProperties jwt;
+
         private Resource publicKey;
+
+        public Resource getPublicKey() {
+            return publicKey;
+        }
+
+        public void setPublicKey(Resource publicKey) {
+            this.publicKey = publicKey;
+        }
+
+        public JwtProperties getJwt() {
+            return jwt;
+        }
+        public void setJwt(JwtProperties jwt) {
+            this.jwt = jwt;
+        }
 
         public Resource getKeyStore() {
             return keyStore;
@@ -54,14 +72,6 @@ public class SecurityProperties {
 
         public void setKeyPairPassword(String keyPairPassword) {
             this.keyPairPassword = keyPairPassword;
-        }
-
-        public void setPublicKey(Resource publicKey) {
-            this.publicKey = publicKey;
-        }
-
-        public Resource getPublicKey() {
-            return publicKey;
         }
     }
 }

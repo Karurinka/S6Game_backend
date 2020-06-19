@@ -7,10 +7,9 @@ import java.util.Set;
 @Table(name = "users")
 public class UsersEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String password;
+    @Id
+    @Column(columnDefinition = "VARCHAR(15)")
     private String username;
 
     @Column(name = "account_non_expired")
@@ -25,18 +24,6 @@ public class UsersEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
-
-    @Column(columnDefinition = "LONGTEXT")
-    private String token;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPassword() {
         return password;
@@ -93,12 +80,5 @@ public class UsersEntity {
     public void setAuthorities(Set<AuthoritiesEntity> authorities) {
         this.authorities = authorities;
     }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
 }
+

@@ -1,13 +1,11 @@
 package s6game.auth.config;
 
-import s6game.auth.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -40,20 +38,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private ClientDetailsService clientDetailsService;
-
     private final SecurityProperties securityProperties;
-
-    @Autowired
-    UserDetailsService detailsService;
 
 
     @Bean
     public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
 
-      MyJwtTokenStore tokenStore =  new MyJwtTokenStore(jwtAccessTokenConverter());
-        return tokenStore;
     }
 
     public AuthorizationServerConfiguration(SecurityProperties securityProperties) {
@@ -66,6 +57,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setTokenStore(tokenStore);
+
         tokenServices.setClientDetailsService(clientDetailsService);
         tokenServices.setAuthenticationManager(authenticationManager);
         return tokenServices;
@@ -74,6 +66,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
+
         SecurityProperties.JwtProperties jwtProperties = securityProperties.getJwt();
         KeyPair keyPair = keyPair(jwtProperties, keyStoreKeyFactory(jwtProperties));
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
@@ -90,14 +83,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.authenticationManager(authenticationManager)
-                .accessTokenConverter(jwtAccessTokenConverter())
-                .tokenStore(tokenStore()).reuseRefreshTokens(false).userDetailsService(detailsService);
+                 .accessTokenConverter(jwtAccessTokenConverter())
+                 .tokenStore(tokenStore());
     }
 
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer.passwordEncoder(passwordEncoder).tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                   .checkTokenAccess("isAuthenticated()");
     }
 
     private KeyPair keyPair(SecurityProperties.JwtProperties jwtProperties, KeyStoreKeyFactory keyStoreKeyFactory) {
@@ -108,3 +101,4 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new KeyStoreKeyFactory(jwtProperties.getKeyStore(), jwtProperties.getKeyStorePassword().toCharArray());
     }
 }
+
