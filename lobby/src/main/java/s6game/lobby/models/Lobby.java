@@ -56,9 +56,7 @@ public class Lobby {
         users.add(user);
     }
 
-    public Lobby(){
-
-    }
+    public Lobby(){ }
 
     public Lobby(LobbyReceiver lobbyReceiver) {
         this.addUser(lobbyReceiver.getOwner());

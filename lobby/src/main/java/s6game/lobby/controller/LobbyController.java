@@ -39,7 +39,7 @@ public class LobbyController {
 
     @PostMapping("/user")
     public Lobby GetGuildUser(@RequestBody User user){
-        return lobbyRepository.findByUserId(user.getId());
+        return lobbyRepository.findByUsers_Id(user.getId());
     }
 
 }
