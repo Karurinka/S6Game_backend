@@ -1,5 +1,5 @@
 -- The encrypted password is `Sat@123`
-INSERT INTO users (id, username, password, enabled, account_non_Expired, account_non_Locked, credentials_non_Expired) VALUES (1, 'mitch', 'generate', true, true,true,true);
+INSERT INTO users (id, username, password, enabled, account_non_Expired, account_non_Locked, credentials_non_Expired) VALUES (1, 'test', 'generate', true, true,true,true);
 
 
 -- The encrypted password is `client-secret`
