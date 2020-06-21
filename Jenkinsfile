@@ -31,6 +31,15 @@ pipeline {
 		    }
 		}
 		
+		stage('Quality gate') {
+			steps {
+				timeout(time: 2, unit: 'MINUTES') {
+					waitForQualityGate abortPipeline: true
+				}
+			}
+		}
+
+		
 		stage('Docker Build') {
 			steps {
 				sh 'docker build -t mycontainerregistry1610.azurecr.io/auth-service:kube${BUILD_NUMBER} ./auth'
@@ -56,3 +65,6 @@ pipeline {
 		}
     }
 }
+
+
+
