@@ -43,9 +43,9 @@ public class UserController {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    @Value("${s6game.rabbit.exchange}")
+    @Value("${s6game.rabbitmq.exchange}")
     private String exchange;
-    @Value("${s6game.rabbit.routingkey}")
+    @Value("${s6game.rabbitmq.routingkey}")
     private String routingkey;
 
     @PostMapping("/sign-up")
