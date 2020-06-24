@@ -19,7 +19,7 @@ public class HelloMessage {
 
     @ManyToOne
     @JoinColumn(name= "lobby_id")
-    private Lobby lobby;
+    private Lobby lobbyId;
 
     public HelloMessage() {}
 
@@ -51,11 +51,11 @@ public class HelloMessage {
         this.messageOwner = messageOwner;
     }
 
-    public Lobby getLobby() {
-        return lobby;
+    public Lobby getLobbyId() {
+        return lobbyId;
     }
 
-    public void setLobby(Lobby lobbyId) {
-        this.lobby = lobbyId;
+    public void setLobbyId(Lobby lobbyId) {
+        this.lobbyId = lobbyId;
     }
 }

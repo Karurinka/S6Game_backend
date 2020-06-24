@@ -22,7 +22,7 @@ public class GreetingController {
         HelloMessage helloMessage = new HelloMessage();
         helloMessage.setMessageOwner(message.getMessageOwner());
         helloMessage.setMessage(message.getMessage().getMessage());
-        helloMessage.setLobby(lobby);
+        helloMessage.setLobbyId(lobby);
 
         return helloMessage;
     }

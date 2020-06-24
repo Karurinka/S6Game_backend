@@ -21,8 +21,8 @@ public class LobbyController {
     private ILobbyRepository lobbyRepository;
 
     @PostMapping
-    public Lobby CreateLobby(@RequestBody LobbyReceiver lobbyReceiver){
-        return lobbyRepository.save(new Lobby(lobbyReceiver));
+    public Lobby CreateLobby(@RequestBody LobbyReceiver lobby){
+        return lobbyRepository.save(new Lobby(lobby));
     }
 
     @GetMapping("/{lobbyName}")

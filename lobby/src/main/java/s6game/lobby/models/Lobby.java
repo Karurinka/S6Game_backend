@@ -16,7 +16,7 @@ public class Lobby {
     @OneToMany(targetEntity = User.class)
     List<User> users = new ArrayList<>();
 
-    private long owner;
+    private Long owner;
 
     @Column(unique = true)
     private String name;
