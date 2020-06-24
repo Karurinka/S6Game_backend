@@ -17,7 +17,7 @@ public class EventReceiver {
 
     private Logger log = LoggerFactory.getLogger(EventReceiver.class);
 
-    @RabbitListener(queues = "${s6game.rabbit.queue}")
+    @RabbitListener(queues = "${s6game.rabbitmq.queue}")
     public void receive(String userJson) {
         Gson gson = new Gson();
         System.out.println("received the event!");

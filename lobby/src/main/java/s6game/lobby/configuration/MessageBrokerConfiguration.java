@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MessageBrokerConfiguration {
 
-    @Value("${s6game.rabbit.queue}")
+    @Value("${s6game.rabbitmq.queue}")
     private String queueName;
-    @Value("${s6game.rabbit.exchange}")
+    @Value("${s6game.rabbitmq.exchange}")
     private String exchange;
-    @Value("${s6game.rabbit.routingkey}")
+    @Value("${s6game.rabbitmq.routingkey}")
     private String routingKey;
 
     @Bean
