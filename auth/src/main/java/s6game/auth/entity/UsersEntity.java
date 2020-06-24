@@ -1,27 +1,19 @@
 package s6game.auth.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "users")
 public class UsersEntity {
 
-    private String password;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(columnDefinition = "VARCHAR(15)")
+    @Column(columnDefinition = "VARCHAR(15)", unique = true)
     private String username;
+    private String password;
 
     @Column(name = "account_non_expired")
     private boolean accountNonExpired;
@@ -33,16 +25,9 @@ public class UsersEntity {
     private boolean credentialsNonExpired;
     private boolean enabled;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPassword() {
         return password;
@@ -80,7 +65,6 @@ public class UsersEntity {
         return credentialsNonExpired;
     }
 
-
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
@@ -99,5 +83,13 @@ public class UsersEntity {
 
     public void setAuthorities(Set<AuthoritiesEntity> authorities) {
         this.authorities = authorities;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

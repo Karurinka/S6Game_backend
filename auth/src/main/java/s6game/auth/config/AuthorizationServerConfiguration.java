@@ -27,8 +27,6 @@ import java.security.KeyPair;
 @EnableConfigurationProperties(SecurityProperties.class)
 @Import(Encoders.class)
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-
-
     @Autowired
     private DataSource dataSource;
 
@@ -39,7 +37,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
 
     private final SecurityProperties securityProperties;
-
 
     @Bean
     public TokenStore tokenStore() {
@@ -63,7 +60,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return tokenServices;
     }
 
-
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
 
@@ -73,7 +69,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         jwtAccessTokenConverter.setKeyPair(keyPair);
         return jwtAccessTokenConverter;
     }
-
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
@@ -94,11 +89,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     }
 
     private KeyPair keyPair(SecurityProperties.JwtProperties jwtProperties, KeyStoreKeyFactory keyStoreKeyFactory) {
-        return keyStoreKeyFactory.getKeyPair(jwtProperties.getKeyPairAlias(), jwtProperties.getKeyPairPassword().toCharArray());
+        return keyStoreKeyFactory
+                .getKeyPair(jwtProperties.getKeyPairAlias(), jwtProperties.getKeyPairPassword().toCharArray());
     }
 
     private KeyStoreKeyFactory keyStoreKeyFactory(SecurityProperties.JwtProperties jwtProperties) {
         return new KeyStoreKeyFactory(jwtProperties.getKeyStore(), jwtProperties.getKeyStorePassword().toCharArray());
     }
+
 }
 

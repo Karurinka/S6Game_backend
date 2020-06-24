@@ -1,4 +1,4 @@
-package s6game.auth.messages;
+package messages;
 
 import java.io.Serializable;
 

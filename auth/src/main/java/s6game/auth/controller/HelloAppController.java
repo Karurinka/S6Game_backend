@@ -1,7 +1,5 @@
 package s6game.auth.controller;
 
-import com.google.gson.Gson;
-
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,9 +23,9 @@ public class HelloAppController {
     @Autowired
     private AmqpTemplate rabbitTemplate;
 
-    @Value("${s6game.rabbit.exchange}")
+    @Value("${s6game.rabbitmq.exchange}")
     private String exchange;
-    @Value("${s6game.rabbit.routingkey}")
+    @Value("${s6game.rabbitmq.routingkey}")
     private String routingkey;
 
     @PostMapping("/update")
