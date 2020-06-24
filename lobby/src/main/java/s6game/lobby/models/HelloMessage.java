@@ -1,8 +1,5 @@
 package s6game.lobby.models;
 
-import s6game.lobby.models.Lobby;
-import s6game.lobby.models.User;
-
 import javax.persistence.*;
 
 @Entity

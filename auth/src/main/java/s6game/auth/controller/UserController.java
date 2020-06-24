@@ -75,7 +75,7 @@ public class UserController {
         map.add("password",usersEntity.getPassword());
         map.add("grant_type","password");
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(map,header);
-        ResponseEntity<TokenResponse> response = template.postForEntity("http://auth-service:8082/oauth/token",request,TokenResponse.class);
+        ResponseEntity<TokenResponse> response = template.postForEntity("http://auth-service:8081/oauth/token",request,TokenResponse.class);
         UsersEntity entity = applicationUserRepository.findByUsername(usersEntity.getUsername());
         UserDTO userDTO = new UserDTO(entity,response.getBody().getAccess_token());
         return userDTO;
@@ -89,7 +89,7 @@ public class UserController {
         map.add("refresh_token",refreshToken);
         map.add("grant_type","refresh_token");
         HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(map,header);
-        ResponseEntity<TokenResponse> response = template.postForEntity("http://auth-service:8082/oauth/token",request,TokenResponse.class);
+        ResponseEntity<TokenResponse> response = template.postForEntity("http://auth-service:8081/oauth/token",request,TokenResponse.class);
         return response.getBody();
     }
 
@@ -117,7 +117,7 @@ public class UserController {
 
     @GetMapping("/findMe")
     public String findMe(Principal principal){
-        return "";// ((Role)applicationUserRepository.findByUsername(principal.getName()).getRoles().toArray()[0]).getRoleName();
+        return "";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

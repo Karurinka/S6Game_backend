@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import s6game.lobby.models.Lobby;
@@ -20,14 +21,14 @@ public class LobbyController {
 	@Autowired
     private ILobbyRepository lobbyRepository;
 
-    @PostMapping
-    public Lobby CreateLobby(@RequestBody LobbyReceiver lobby){
-        return lobbyRepository.save(new Lobby(lobby));
+    @GetMapping("/{lobbyName}")
+    public Lobby GetLobby(@RequestHeader("Authorization") String token , @PathVariable String lobbyName){
+        return lobbyRepository.findByName(lobbyName);
     }
 
-    @GetMapping("/{lobbyName}")
-    public Lobby GetLobby(@PathVariable String lobbyName){
-        return lobbyRepository.findByName(lobbyName);
+    @PostMapping("/user")
+    public Lobby GetLobbyUser(@RequestBody User user){
+        return lobbyRepository.findByUsers_Id(user.getId());
     }
 
     @PostMapping("/{lobbyName}")
@@ -37,9 +38,9 @@ public class LobbyController {
         return lobbyRepository.save(lobby);
     }
 
-    @PostMapping("/user")
-    public Lobby GetLobbyUser(@RequestBody User user){
-        return lobbyRepository.findByUsers_Id(user.getId());
+    @PostMapping
+    public Lobby CreateLobby(@RequestBody LobbyReceiver lobby){
+        return lobbyRepository.save(new Lobby(lobby));
     }
 
 }
