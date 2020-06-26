@@ -13,13 +13,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lobby</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>11</java.version>
-		<sonar.projectKey>Karurinka_S6Game_backend</sonar.projectKey>
-		<sonar.organization>karurinka</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.login>b08e53e2efe96e46dce9c2964aac7f1f29cca4c1</sonar.login>
-	</properties>
 
 	<dependencies>
 		<dependency>
