@@ -15,7 +15,7 @@ public class CurseController {
     @GetMapping("/{message}")
     public String getCensoredMessage(@PathVariable String message){
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject("add FAAS here" + message, String.class);
+        String result = restTemplate.getForObject("http://localhost:7071/api/CurseRemover" + message, String.class);
         return result;
     }
 }
