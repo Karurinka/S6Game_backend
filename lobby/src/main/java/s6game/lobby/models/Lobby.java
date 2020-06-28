@@ -37,11 +37,11 @@ public class Lobby {
         this.users = users;
     }
 
-    public long getOwner() {
+    public Long getOwner() {
         return owner;
     }
 
-    public void setOwner(long owner) {
+    public void setOwner(Long owner) {
         this.owner = owner;
     }
 
