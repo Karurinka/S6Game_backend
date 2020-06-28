@@ -15,7 +15,7 @@ public class GreetingController {
     @SendTo("/topic/greetings/{lobbyName}")
     public HelloMessage greeting(@DestinationVariable String lobbyName, MessageReceiver message) throws Exception {
         Lobby lobby = new Lobby();
-        lobby.setId(message.getLobbyId());
+        lobby.setId(message.getLobby().getId());
         lobby.setName(message.getLobbyName());
         System.out.printf(message.toString());
 
