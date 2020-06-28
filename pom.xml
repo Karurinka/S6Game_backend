@@ -5,6 +5,7 @@
 
     <groupId>S6Game</groupId>
     <artifactId>main</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>lobby</name>
     <description>Demo project for Spring Boot</description>
