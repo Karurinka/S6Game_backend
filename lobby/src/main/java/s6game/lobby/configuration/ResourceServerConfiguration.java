@@ -67,5 +67,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
             //log exception
             throw new RuntimeException(e);
         }
+
     }
 }
