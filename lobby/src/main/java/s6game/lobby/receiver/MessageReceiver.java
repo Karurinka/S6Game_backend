@@ -1,7 +1,6 @@
 package s6game.lobby.receiver;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import s6game.lobby.models.Lobby;
 import s6game.lobby.models.User;
 import s6game.lobby.models.HelloMessage;
 
@@ -11,7 +10,7 @@ public class MessageReceiver {
     @JsonProperty
     private User messageOwner;
     @JsonProperty
-    private Lobby lobby;
+    private Long lobbyId;
     @JsonProperty
     private String lobbyName;
 
@@ -31,12 +30,12 @@ public class MessageReceiver {
         this.messageOwner = messageOwner;
     }
 
-    public Lobby getLobby() {
-        return lobby;
+    public Long getLobbyId() {
+        return lobbyId;
     }
 
-    public void setLobby(Lobby lobbyId) {
-        this.lobby = lobby;
+    public void setLobbyId(Long lobbyId) {
+        this.lobbyId = lobbyId;
     }
 
     public String getLobbyName() {
