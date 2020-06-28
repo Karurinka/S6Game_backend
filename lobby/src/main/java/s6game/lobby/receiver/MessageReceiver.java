@@ -14,6 +14,9 @@ public class MessageReceiver {
     @JsonProperty
     private String lobbyName;
 
+    public MessageReceiver() {
+    }
+
     public HelloMessage getMessage() {
         return message;
     }
