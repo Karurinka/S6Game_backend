@@ -11,7 +11,7 @@ import s6game.lobby.models.HelloMessage;
 @Controller
 public class GreetingController {
 
-    @MessageMapping("/hello/{lobbyName}")
+        @MessageMapping("/hello/{lobbyName}")
     @SendTo("/topic/greetings/{lobbyName}")
     public HelloMessage greeting(@DestinationVariable String lobbyName, MessageReceiver message) throws Exception {
         Lobby lobby = new Lobby();
