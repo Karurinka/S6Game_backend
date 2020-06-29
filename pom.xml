@@ -4,11 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>S6Game</groupId>
-    <artifactId>main</artifactId>
+    <artifactId>S6game-multi-modules</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lobby</name>
-    <description>Demo project for Spring Boot</description>
+    
+    <modules>
+        <module>auth</module>
+        <module>lobby</module>
+    </modules>
 
     <properties>
         <java.version>11</java.version>
@@ -17,10 +20,5 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>b08e53e2efe96e46dce9c2964aac7f1f29cca4c1</sonar.login>
     </properties>
-
-    <modules>
-        <module>auth</module>
-        <module>lobby</module>
-    </modules>
 
 </project>
