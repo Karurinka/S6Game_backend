@@ -1,8 +1,17 @@
 package s6game.auth.entity;
 
-import javax.persistence.*;
-import java.util.Set;
 import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +37,19 @@ public class UsersEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<AuthoritiesEntity> authorities;
+
+    public UsersEntity(String password, String username, Set<AuthoritiesEntity> authorities) {
+        this.password = password;
+        this.username = username;
+        this.authorities = authorities;
+        accountNonExpired = true;
+        accountNonLocked = true;
+        enabled = true;
+        credentialsNonExpired = true;
+    }
+
+    public UsersEntity() {
+    }
 
     public String getPassword() {
         return password;
