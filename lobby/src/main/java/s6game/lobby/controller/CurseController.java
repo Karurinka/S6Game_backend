@@ -15,7 +15,7 @@ public class CurseController {
     @GetMapping("/{message}")
     public String getCensoredMessage(@PathVariable String message){
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject("http://localhost:7071/api/CurseRemover?name=" + message, String.class);
+        String result = restTemplate.getForObject("https://function-20200627161656180.azurewebsites.net/api/CurseRemover?name=" + message, String.class);
         return result;
     }
 }
